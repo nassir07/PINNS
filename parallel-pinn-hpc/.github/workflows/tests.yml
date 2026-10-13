@@ -1,0 +1,18 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install (CPU-only PyTorch)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install numpy pandas matplotlib pytest
+      - name: Unit tests (physics + DDP gradient equivalence on gloo)
+        run: pytest -q
+      - name: 2-process CPU smoke run
+        run: python -m torch.distributed.run --standalone --nproc_per_node=2 train.py --device cpu --steps 20 --n_colloc 1024 --n_ic 256 --log_every 10 --probe_steps 3 --tag ci

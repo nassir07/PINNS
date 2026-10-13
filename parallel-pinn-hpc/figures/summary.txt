@@ -1,0 +1,6 @@
+Hardware: 2 x Tesla T4 (Kaggle, single node) | worker counts: [1, 2] | seeds per config: 3
+Strong scaling: 2 workers -> 1.80x per-step speedup (90% efficiency), fitted serial fraction 11.3%.
+Final relative L2 (u): 1.28e-02 on 1 worker vs 9.87e-03 on 2.
+Exposed communication at 2 workers: 1% of the step.
+Weights identical across ranks: max difference 0.0e+00.
+Weak scaling: 99% efficiency at 2 workers (throughput x1.99).

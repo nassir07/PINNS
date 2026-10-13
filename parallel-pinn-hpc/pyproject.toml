@@ -1,0 +1,9 @@
+[project]
+name = "parallel-pinn-hpc"
+version = "1.0.0"
+description = "Multi-GPU distributed training of a Navier-Stokes PINN (PyTorch DDP + mpi4py) with speedup and convergence benchmarks"
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
